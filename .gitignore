@@ -4,6 +4,7 @@ token.json
 token.pickle
 venv/
 .env
+creds.json
 token.json
 token.pickle
 .DS_Store
