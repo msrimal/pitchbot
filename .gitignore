@@ -1,10 +1,13 @@
+# Virtual environment
 venv/
+
+# Environment variables
 .env
-token.json
-token.pickle
-venv/
-.env
+
+# Credential and token files (secrets)
 creds.json
 token.json
 token.pickle
+
+# macOS system files
 .DS_Store
