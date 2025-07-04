@@ -7,7 +7,10 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from dotenv import load_dotenv
 from google.auth.transport.requests import Request  
-
+# INCLUDE IN README : instructions to reinstall dependencies to ensure fast env setup. See reqs.txt
+# UI : MVP by July 30th. 
+# See email regarding model training set. 
+# Pytest file need to be asap (use chat) 
 # Load environment variables
 load_dotenv()
 
@@ -51,6 +54,9 @@ def load_user_input(json_path="user_input.json"):
         if field not in data or not data[field].strip():
             raise ValueError(f"Missing or empty field: {field}")
     return data
+# ----------------------- NEEDS UPDATE ------------------------
+# Strong suggestion to include potiental other solutions. Separate from User input suggestion in JSON file
+# 
 
 def build_prompt(user_data):
     return f"""
@@ -106,6 +112,10 @@ def create_section_slide(service, presentation_id, section_title, content):
         elif placeholder.get('type') == 'BODY':
             body_id = element['objectId']
     requests = []
+    #---------------- NEEDS UPDATE ->SEE BELOW -------------------- 
+    # Change format to include "titleId" to update first slide in generated presentation 
+    # Line 150: misuse if ".strip()" - Must CLEAN UP before stripping 
+    #
     if title_id:
         requests.append({
             "insertText": {
@@ -129,6 +139,7 @@ def create_section_slide(service, presentation_id, section_title, content):
 
 def extract_sections(pitch_text):
     sections = {}
+    #------------------- UPDATE PATTERN ------------------------------
     pattern = r"(\d+)\.\s*(.+)"
     current_section = None
     lines = pitch_text.split('\n')
